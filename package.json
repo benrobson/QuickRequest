@@ -1,0 +1,24 @@
+{
+  "name": "quickrequest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benrobson8/QuickRequest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benrobson8/QuickRequest/issues"
+  },
+  "homepage": "https://github.com/benrobson8/QuickRequest#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.1.0",
+    "fs": "0.0.1-security"
+  }
+}
