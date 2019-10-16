@@ -37,12 +37,12 @@ client.on("message", (message) => {
 
 client.on("ready", () => {
   console.log('[CONSOLE] Launched QuickRequest.');
-  client.user.setActivity(`Use ${process.env.prefix}request help`);
+  client.user.setActivity(`Use ${process.env.prefix}request`);
   setActivity(); setInterval(setActivity, 60000);
 
   function setActivity() {
     // Sets Activity in a rotation
-    const Gameinfo = [`Use ${process.env.prefix}request help`, 'Created by benrobson8', 'https://github.com/benrobson8'];
+    const Gameinfo = [`Use ${process.env.prefix}request`, 'Created by benrobson8', 'https://github.com/benrobson8'];
     var info = Gameinfo[Math.floor(Math.random() * Gameinfo.length)];
 
     client.user.setActivity(info);
