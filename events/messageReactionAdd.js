@@ -20,8 +20,12 @@ module.exports = async (reaction, user) => {
     requesteduser.send(requestaccept);
     console.log(`[CONSOLE] ${usersname}\'s request has been accepted!`);
     message.delete();
-    return;
+
+    // Add a role to the user when their request is accepted.
+    let role = message.guild.roles.find(role => role.name === `${process.env.requestrole}`);
+    requesteduser.addRole(role.id);
   } else if (emoji.name == '❎') {
+    // Log in console that the users request was denied.
     console.log(`[CONSOLE] ${usersname}\'s request has been denied.`);
     message.delete();
     return;
