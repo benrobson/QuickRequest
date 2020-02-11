@@ -4,6 +4,7 @@ const client = new Discord.Client({ disableEveryone: true });
 module.exports = async (reaction, user) => {
   let channel = reaction.message.channel.name;
   let message = reaction.message, emoji = reaction.emoji;
+  let authee = user.username;
 
   if (user.bot == true) return; // This stops the bot from picking up it's own reactions.
   if (!channel) return; // This allows the bot to only detect changes in the #requests channel
@@ -18,7 +19,7 @@ module.exports = async (reaction, user) => {
       .setColor('#329932')
       .setDescription(`Congratulations! Your request has been accepted!\nYou should be whitelisted on our servers now. The IP to login is **${process.env.ipaddress}**`)
     requesteduser.send(requestaccept);
-    console.log(`[CONSOLE] ${usersname}\'s request has been accepted!`);
+    console.log(`[CONSOLE] ${usersname}\'s request has been accepted by ${authee}`);
     message.delete();
 
     // Add a role to the user when their request is accepted.
