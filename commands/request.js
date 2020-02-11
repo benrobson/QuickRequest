@@ -27,7 +27,7 @@ module.exports.run = async (client, message, args) => {
   requestchannel.send(request).then(async requestembed => {
     await requestembed.react('✅')
     await requestembed.react('❎')
-  })
+  });
 
   // Sending a direct message to the user.
   let requestconfirmation = new Discord.RichEmbed()
