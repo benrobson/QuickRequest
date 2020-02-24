@@ -8,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/benrobson8/QuickRequest.git"
+    "url": "git+https://github.com/benrobson/QuickRequest.git"
   },
-  "author": "",
+  "author": "Ben Robson",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/benrobson8/QuickRequest/issues"
@@ -19,6 +19,9 @@
   "dependencies": {
     "discord.js": "^11.5.1",
     "dotenv": "^8.1.0",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "librcon": "^1.0.1",
+    "modern-rcon": "^1.0.3",
+    "rcon-client": "^4.2.0"
   }
 }

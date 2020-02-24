@@ -5,6 +5,11 @@ client.commands = new Discord.Collection();
 require('./util/eventLoader.js')(client);
 const fs = require('fs');
 
+//
+// Controllers
+//
+const rcon = require('./controllers/rcon'); // RCON controller
+
 // Reads all commands & boot them in.
 fs.readdir('./commands', (err, files) => {
   if (err) console.log(err);
@@ -35,24 +40,24 @@ client.on("message", (message) => {
   let commandfile = client.commands.get(command.slice(prefix.length));
   if (commandfile) commandfile.run(client, message, args);
 
-  if (msg.includes('!request')) {
-    message.delete(5000);
-  };
+  // if (msg.includes('!request')) {
+  //   message.delete(5000);
+  // };
 });
 
 client.on("ready", () => {
   console.log('[CONSOLE] Launched QuickRequest.');
   client.user.setActivity(`Use ${process.env.prefix}request`);
-  // setActivity(); setInterval(setActivity, 60000);
+  setActivity(); setInterval(setActivity, 60000);
 
-  // function setActivity() {
-  //   // Sets Activity in a rotation
-  //   const Gameinfo = [`Use ${process.env.prefix}request`, 'Created by benrobson8', 'https://github.com/benrobson8'];
-  //   var info = Gameinfo[Math.floor(Math.random() * Gameinfo.length)];
-  //
-  //   client.user.setActivity(info);
-  //   console.log(`[CONSOLE] Activity set to (${info})`);
-  // }
+  function setActivity() {
+    // Sets Activity in a rotation
+    const Gameinfo = [`Use ${process.env.prefix}request`, 'Created By: https://github.com/benrobson'];
+    var info = Gameinfo[Math.floor(Math.random() * Gameinfo.length)];
+
+    client.user.setActivity(info);
+    // console.log(`[CONSOLE] Activity set to (${info})`);
+  }
 });
 
 client.login(process.env.discordapitoken);
