@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({ disableEveryone: true });
 
-function push(requesteduser, ipaddress) {
+async function push(requesteduser, ipaddress) {
   let requestaccept = new Discord.RichEmbed()
     .setTitle('Request Accepted')
     .setColor('#329932')

@@ -14,19 +14,18 @@ module.exports = async (reaction, user) => {
 
   let mcusername = reaction.message.embeds[0].fields[0].value; // shadowolfyt
   let server = reaction.message.embeds[0].fields[1].value; // servers
-  let discordid = reaction.message.embeds[0].fields[2].value; // discord id
+  let discordid = reaction.message.embeds[0].fields[3].value; // discord id
   let requesteduser = message.guild.fetchMember(discordid);
-
-  console.log(reaction.message.embeds[0].fields[2].value);
+  // let requesteduser = client.users.get(discordid);
 
   if (emoji.name == '✅') {
     if (server == "rlcraft") {
       // RLCraft
-      // reqacceptdm.push(requesteduser, process.env.rlcraftaddress);
+      reqacceptdm.push(requesteduser, process.env.rlcraftaddress);
       rcon.commandpush(`whitelist add ${mcusername}`, process.env.rlcraftrconpassword, process.env.rconaddress, process.env.rlcraftrconport);
       // assignrole.push(requesteduser, `${process.env.rlcraftrole}`, message);
       return console.log(`[CONSOLE] A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`);
-      message.delete();
+      message.delete(2000);
     } else if (server == "revelation") {
       // Revelation
       // reqacceptdm.push(requesteduser, process.env.revelationaddress);
