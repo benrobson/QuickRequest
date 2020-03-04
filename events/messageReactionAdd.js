@@ -15,7 +15,7 @@ module.exports = async (reaction, user) => {
   let mcusername = reaction.message.embeds[0].fields[0].value; // shadowolfyt
   let server = reaction.message.embeds[0].fields[1].value; // servers
   let discordid = reaction.message.embeds[0].fields[3].value; // discord id
-  let requesteduser = message.guild.fetchMember(discordid);
+  let requesteduser = message.guild.memebers.fetch(discordid);
   // let requesteduser = client.users.get(discordid);
 
   if (emoji.name == '✅') {
