@@ -12,29 +12,26 @@ module.exports = async (reaction, user) => {
   if (user.bot == true) return; // This stops the bot from picking up it's own reactions.
   if (!channel) return; // This allows the bot to only detect changes in the #requests channel
 
-  let mcusername = reaction.message.embeds[0].fields[0].value; // shadowolfyt
-  let server = reaction.message.embeds[0].fields[1].value; // servers
-  // let discordid = reaction.message.embeds[0].fields[2].value; // user mention (a User class object)
-  let discordid = reaction.message.embeds[0].fields[3].value; // user mention (a User class object)
-  let requesteduser = message.guild.fetchMember(discordid);
+  let mcusername = reaction.message.embeds[0].fields[0].value; // Requesting users username
+  let server = reaction.message.embeds[0].fields[1].value; // Requested Server
+  let discorduser = reaction.message.embeds[0].fields[2].value; // user mention (a User class object)
+  let discordid = reaction.message.embeds[0].fields[3].value; // users id
+  let requesteduser = await message.guild.fetchMember(discordid);
   // let requesteduser = client.users.get(discordid);
 
   if (emoji.name == '✅') {
     if (server == "rlcraft") {
-      console.log(" ");
-      console.log(discordid);
-      console.log(" ");
-
       // RLCraft
       reqacceptdm.push(requesteduser, process.env.rlcraftaddress);
-      // rcon.commandpush(`whitelist add ${mcusername}`, process.env.rlcraftrconpassword, process.env.rconaddress, process.env.rlcraftrconport);
+      rcon.commandpush(`whitelist add ${mcusername}`, process.env.rlcraftrconpassword, process.env.rconaddress, process.env.rlcraftrconport);
       assignrole.push(requesteduser, `${process.env.rlcraftrole}`, message);
       return console.log(`[CONSOLE] A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`);
       message.delete(2000);
     } else if (server == "revelation") {
       // Revelation
-      // reqacceptdm.push(requesteduser, process.env.revelationaddress);
+      reqacceptdm.push(requesteduser, process.env.revelationaddress);
       rcon.commandpush(`whitelist add ${mcusername}`, process.env.revelationrconpassword, process.env.rconaddress, process.env.revelationrconport);
+      assignrole.push(requesteduser, `${process.env.revelationrole}`, message);
       message.delete(2000);
       return console.log(`[CONSOLE] A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`);
     }
