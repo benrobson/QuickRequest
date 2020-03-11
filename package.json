@@ -22,6 +22,7 @@
     "fs": "0.0.1-security",
     "librcon": "^1.0.1",
     "modern-rcon": "^1.0.3",
+    "node-file-logger": "^0.9.5",
     "rcon-client": "^4.2.0"
   }
 }

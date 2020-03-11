@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const reqsend = require('../functions/requestsend');
 const reqdmsend = require('../functions/requestconfirmdm');
+const log = require('node-file-logger');
 
 module.exports.run = async (client, message, args) => {
   let requestchannel = message.guild.channels.find(c => c.name === `${process.env.requestchannel}`);
@@ -47,8 +48,6 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
     }
   };
-
-  // TODO: Add a check if the Minecraft Username is valid.
 };
 
 module.exports.help = {

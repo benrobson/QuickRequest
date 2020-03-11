@@ -3,6 +3,7 @@ const client = new Discord.Client({ disableEveryone: true });
 const reqacceptdm = require('../functions/requestacceptdm');
 const assignrole = require('../functions/assignrole');
 const rcon = require('../controllers/rcon');
+const log = require('node-file-logger');
 
 module.exports = async (reaction, user) => {
   let channel = reaction.message.channel.name;
@@ -17,7 +18,6 @@ module.exports = async (reaction, user) => {
   let discorduser = reaction.message.embeds[0].fields[2].value; // user mention (a User class object)
   let discordid = reaction.message.embeds[0].fields[3].value; // users id
   let requesteduser = await message.guild.fetchMember(discordid);
-  // let requesteduser = client.users.get(discordid);
 
   if (emoji.name == '✅') {
     if (server == "rlcraft") {
@@ -25,20 +25,21 @@ module.exports = async (reaction, user) => {
       reqacceptdm.push(requesteduser, process.env.rlcraftaddress);
       rcon.commandpush(`whitelist add ${mcusername}`, process.env.rlcraftrconpassword, process.env.rconaddress, process.env.rlcraftrconport);
       assignrole.push(requesteduser, `${process.env.rlcraftrole}`, message);
-      return console.log(`[CONSOLE] A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`);
       message.delete(2000);
+      log.Info(`A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`)
+      return console.log(`[CONSOLE] A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`);
     } else if (server == "revelation") {
       // Revelation
       reqacceptdm.push(requesteduser, process.env.revelationaddress);
       rcon.commandpush(`whitelist add ${mcusername}`, process.env.revelationrconpassword, process.env.rconaddress, process.env.revelationrconport);
       assignrole.push(requesteduser, `${process.env.revelationrole}`, message);
       message.delete(2000);
+      log.Info(`A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`)
       return console.log(`[CONSOLE] A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`);
     }
-
-    // message.delete();
   } else if (emoji.name == '❎') {
     // Log in console that the users request was denied.
+    log.Info(`${mcusername}\'s request has been denied.`)
     console.log(`[CONSOLE] ${mcusername}\'s request has been denied.`);
     return;
   };

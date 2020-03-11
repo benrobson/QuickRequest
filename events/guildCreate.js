@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const log = require('node-file-logger');
 
 module.exports = async guild => {
   let mainchannel = guild.channels.find(c => c.name === 'general');
@@ -12,4 +13,5 @@ module.exports = async guild => {
   mainchannel.send(embed)
 
   console.log(`[CONSOLE] ${guild.name} has added QuickRequest.`);
+  log.Info(`${guild.name} has added QuickRequest.`)
 };

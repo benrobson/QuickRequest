@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({ disableEveryone: true });
+const log = require('node-file-logger');
 
 function push(mcusername, discordusername, server, requestchannel) {
   // Send the request to the #requests channel.
@@ -16,6 +17,7 @@ function push(mcusername, discordusername, server, requestchannel) {
     await requestembed.react('❎')
   });
 
+  log.Info(`${mcusername} requested to join ${server}`);
   return console.log(`[CONSOLE] ${mcusername} requested to join ${server}`);
 }
 
