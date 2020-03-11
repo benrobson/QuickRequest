@@ -5,7 +5,7 @@ const reqdmsend = require('../functions/requestconfirmdm');
 module.exports.run = async (client, message, args) => {
   let requestchannel = message.guild.channels.find(c => c.name === `${process.env.requestchannel}`);
   let mcusername = args[1];
-  let server = args[0];
+  let server = args[0].toLowerCase();
   let discordusername = message.author;
 
   // If user did not identify a Server, list the avaliable ones.
