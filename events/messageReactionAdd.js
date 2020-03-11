@@ -39,8 +39,8 @@ module.exports = async (reaction, user) => {
     }
   } else if (emoji.name == '❎') {
     // Log in console that the users request was denied.
-    log.Info(`${mcusername}\'s request has been denied.`)
-    console.log(`[CONSOLE] ${mcusername}\'s request has been denied.`);
+    log.Info(`${mcusername}\'s request has been denied to gain access to ${server}.`)
+    console.log(`[CONSOLE] ${mcusername}\'s request has been denied to gain access to ${server}.`);
     return;
   };
 };
