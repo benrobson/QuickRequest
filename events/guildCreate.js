@@ -1,9 +1,12 @@
 const Discord = require('discord.js');
-const log = require('node-file-logger');
+const log = require('log-to-file');
 
 module.exports = async guild => {
   let mainchannel = guild.channels.find(c => c.name === 'general');
-  if (!mainchannel) return;
+  if (!mainchannel) {
+    console.log(`Attempted to send welcome message but failed.`);
+    log(`Attempted to send welcome message but failed.`);
+  };
 
   let embed = new Discord.RichEmbed()
     .setTitle('QuickRequest')
@@ -13,5 +16,5 @@ module.exports = async guild => {
   mainchannel.send(embed)
 
   console.log(`[CONSOLE] ${guild.name} has added QuickRequest.`);
-  log.Info(`${guild.name} has added QuickRequest.`)
+  log(`${guild.name} has added QuickRequest.`)
 };

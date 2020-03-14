@@ -1,6 +1,9 @@
 const Discord = require('discord.js');
 const reqsend = require('../functions/requestsend');
 const reqdmsend = require('../functions/requestconfirmdm');
+const fetchUrl = require("fetch").fetchUrl;
+const mojangapi = require('mojang-api');
+const log = require('log-to-file');
 
 module.exports.run = async (client, message, args) => {
   let requestchannel = message.guild.channels.find(c => c.name === `${process.env.requestchannel}`);
@@ -29,23 +32,36 @@ module.exports.run = async (client, message, args) => {
     message.channel.send(embed);
     return;
   } else {
-    // Run through and check if the user has requested any of our services.
-    if (server == "rlcraft") {
-      // RLCraft
-      reqsend.push(mcusername, discordusername, server, requestchannel);
-      reqdmsend.push(mcusername, discordusername, server);
-    } else if (server == "revelation") {
-      // Revelation
-      reqsend.push(mcusername, discordusername, server, requestchannel);
-      reqdmsend.push(mcusername, discordusername, server);
-    } else {
-      // Chuck an error because none of the services were ours.
-      let embed = new Discord.RichEmbed()
-        .setTitle('Error')
-        .setColor('#cc0000')
-        .setDescription(`No valid platform was selected.`)
-      message.channel.send(embed);
-    }
+    // Check if the requesting username is valid.
+    fetchUrl(`https://api.mojang.com/users/profiles/minecraft/${mcusername}`, function(error, meta, body) {
+      if (!body.toString()) {
+        let embed = new Discord.RichEmbed()
+          .setTitle('Error')
+          .setColor('#cc0000')
+          .setDescription(`The requested username is not valid.`)
+        message.channel.send(embed);
+        log(`${mcusername} is not a valid username, cannning request.`)
+        return console.log(`${mcusername} is not a valid username, cannning request.`);
+      } else {
+        // Run through and check if the user has requested any of our services.
+        if (server == "rlcraft") {
+          // RLCraft
+          reqsend.push(mcusername, discordusername, server, requestchannel);
+          reqdmsend.push(mcusername, discordusername, server);
+        } else if (server == "revelation") {
+          // Revelation
+          reqsend.push(mcusername, discordusername, server, requestchannel);
+          reqdmsend.push(mcusername, discordusername, server);
+        } else {
+          // Chuck an error because none of the services were ours.
+          let embed = new Discord.RichEmbed()
+            .setTitle('Error')
+            .setColor('#cc0000')
+            .setDescription(`No valid platform was selected.`)
+          message.channel.send(embed);
+        };
+      }
+    });
   };
 };
 

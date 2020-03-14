@@ -19,9 +19,12 @@
   "dependencies": {
     "discord.js": "^11.5.1",
     "dotenv": "^8.1.0",
+    "fetch": "^1.1.0",
     "fs": "0.0.1-security",
     "librcon": "^1.0.1",
+    "log-to-file": "^2.0.2",
     "modern-rcon": "^1.0.3",
+    "mojang-api": "0.0.2",
     "node-file-logger": "^0.9.5",
     "rcon-client": "^4.2.0"
   }

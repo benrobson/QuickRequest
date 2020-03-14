@@ -3,7 +3,7 @@ const client = new Discord.Client({ disableEveryone: true });
 const reqacceptdm = require('../functions/requestacceptdm');
 const assignrole = require('../functions/assignrole');
 const rcon = require('../controllers/rcon');
-const log = require('node-file-logger');
+const log = require('log-to-file');
 
 module.exports = async (reaction, user) => {
   let channel = reaction.message.channel.name;
@@ -26,7 +26,7 @@ module.exports = async (reaction, user) => {
       rcon.commandpush(`whitelist add ${mcusername}`, process.env.rlcraftrconpassword, process.env.rconaddress, process.env.rlcraftrconport);
       assignrole.push(requesteduser, `${process.env.rlcraftrole}`, message);
       message.delete(2000);
-      log.Info(`A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`)
+      log(`A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`)
       return console.log(`[CONSOLE] A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`);
     } else if (server == "revelation") {
       // Revelation
@@ -34,12 +34,12 @@ module.exports = async (reaction, user) => {
       rcon.commandpush(`whitelist add ${mcusername}`, process.env.revelationrconpassword, process.env.rconaddress, process.env.revelationrconport);
       assignrole.push(requesteduser, `${process.env.revelationrole}`, message);
       message.delete(2000);
-      log.Info(`A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`)
+      log(`A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`)
       return console.log(`[CONSOLE] A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`);
     }
   } else if (emoji.name == '❎') {
     // Log in console that the users request was denied.
-    log.Info(`${mcusername}\'s request has been denied to gain access to ${server}.`)
+    log(`${mcusername}\'s request has been denied to gain access to ${server}.`)
     console.log(`[CONSOLE] ${mcusername}\'s request has been denied to gain access to ${server}.`);
     return;
   };
