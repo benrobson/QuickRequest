@@ -5,7 +5,7 @@ module.exports = async guild => {
   let mainchannel = guild.channels.find(c => c.name === 'general');
   if (!mainchannel) return;
 
-  let embed = new Discord.RichEmbed()
+  let embed = new Discord.MessageEmbed()
     .setTitle('QuickRequest')
     .setColor('#7F99B1')
     .setDescription(`Thank you for inviting QuickRequest to your guild.\nThis bot was developed quickly [in about 24 hours] for the use of simply requesting for access to Servers.\nUse ${process.env.prefix}request.`)

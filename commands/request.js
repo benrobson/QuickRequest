@@ -3,7 +3,7 @@ const reqsend = require('../functions/requestsend');
 const reqdmsend = require('../functions/requestconfirmdm');
 
 module.exports.run = async (client, message, args) => {
-  let requestchannel = message.guild.channels.find(c => c.name === `${process.env.requestchannel}`);
+  let requestchannel = message.guild.channels.cache.find(c => c.name === `${process.env.requestchannel}`);
   let mcusername = args[1];
   let server = args[0].toLowerCase();
   let discordusername = message.author;

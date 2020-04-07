@@ -17,7 +17,7 @@ module.exports = async (reaction, user) => {
   let server = reaction.message.embeds[0].fields[1].value; // Requested Server
   let discorduser = reaction.message.embeds[0].fields[2].value; // user mention (a User class object)
   let discordid = reaction.message.embeds[0].fields[3].value; // users id
-  let requesteduser = await message.guild.fetchMember(discordid);
+  let requesteduser = await message.guild.members.fetch(discordid);
 
   if (emoji.name == '✅') {
     if (server == "rlcraft") {
@@ -25,7 +25,7 @@ module.exports = async (reaction, user) => {
       reqacceptdm.push(requesteduser, process.env.rlcraftaddress);
       rcon.commandpush(`whitelist add ${mcusername}`, process.env.rlcraftrconpassword, process.env.rconaddress, process.env.rlcraftrconport);
       assignrole.push(requesteduser, `${process.env.rlcraftrole}`, message);
-      message.delete(2000);
+      message.delete({ timeout: 2000 });
       log.Info(`A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`)
       return console.log(`[CONSOLE] A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`);
     } else if (server == "revelation") {
@@ -33,7 +33,7 @@ module.exports = async (reaction, user) => {
       reqacceptdm.push(requesteduser, process.env.revelationaddress);
       rcon.commandpush(`whitelist add ${mcusername}`, process.env.revelationrconpassword, process.env.rconaddress, process.env.revelationrconport);
       assignrole.push(requesteduser, `${process.env.revelationrole}`, message);
-      message.delete(2000);
+      message.delete({ timeout: 2000 });
       log.Info(`A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`)
       return console.log(`[CONSOLE] A request has been accepted by ${authorizer} for ${mcusername} to gain access to ${server}.`);
     }

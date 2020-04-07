@@ -57,8 +57,8 @@ client.on("message", (message) => {
   let commandfile = client.commands.get(command.slice(prefix.length));
   if (commandfile) commandfile.run(client, message, args);
 
-  if (msg.includes('!request')) {
-    message.delete(5000);
+  if (msg.includes(`${process.env.request}request`)) {
+    message.delete({ timeout: 5000 });
   };
 });
 

@@ -4,7 +4,7 @@ const log = require('node-file-logger');
 
 function push(mcusername, discordusername, server, requestchannel) {
   // Send the request to the #requests channel.
-  let request = new Discord.RichEmbed()
+  let request = new Discord.MessageEmbed()
     .setTitle(`Request [${mcusername}]`)
     .setColor('#6666ff')
     .setThumbnail(discordusername.displayAvatarURL)
