@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
 
   // If user did not identify a Server, list the avaliable ones.
   if (!server) {
-    let embed = new Discord.RichEmbed()
+    let embed = new Discord.MessageEmbed()
       .setTitle('How to submit a request?')
       .setColor('#ffae19')
       .setDescription(`To submit a request, use '${process.env.prefix}request [server] [username]'.\nFrom there your request will be reviewed and you will receive a message if you have been accepted or not.\nPlease ensure that you are using your Minecraft Username when you request for access.\n\n**Avaliable Servers**`)
@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args) => {
 
   // Checks to see if the user entered a username.
   if (!mcusername) {
-    let embed = new Discord.RichEmbed()
+    let embed = new Discord.MessageEmbed()
       .setTitle('Error')
       .setColor('#cc0000')
       .setDescription(`A Minecraft Username is required to submit a request.`)
@@ -40,7 +40,7 @@ module.exports.run = async (client, message, args) => {
       reqdmsend.push(mcusername, discordusername, server);
     } else {
       // Chuck an error because none of the services were ours.
-      let embed = new Discord.RichEmbed()
+      let embed = new Discord.MessageEmbed()
         .setTitle('Error')
         .setColor('#cc0000')
         .setDescription(`No valid platform was selected.`)
