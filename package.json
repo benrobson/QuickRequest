@@ -23,6 +23,6 @@
     "librcon": "^1.0.1",
     "modern-rcon": "^1.0.3",
     "node-file-logger": "^0.9.5",
-    "rcon-client": "^4.2.0"
+    "rcon-client": "^4.2.1"
   }
 }
