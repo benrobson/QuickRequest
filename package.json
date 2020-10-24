@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/benrobson8/QuickRequest#readme",
   "dependencies": {
-    "discord.js": "^12.3.1",
+    "discord.js": "^12.4.1",
     "dotenv": "^8.1.0",
     "fs": "0.0.1-security",
     "librcon": "^1.0.1",
