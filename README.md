@@ -1,3 +1,5 @@
+# This project has now been marked as archived. If you need support, please visit the [Crafting For Christ Discord](https://www.craftingforchrist.net/discord)
+
 # QuickRequest
 QuickRequest is a Discord bot that runs on the Crafting For Christ Network Discord that manages requests for access to our white-listed servers on our Network.
 Initially developed in under 2 hours to handle requests for the RLCraft server that was launched at that time.
